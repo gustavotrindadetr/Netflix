@@ -1,8 +1,9 @@
 library(dplyr)
 library(tidyr)
 library(rvest)
+library(stringr)
 
-options(OutDec = '.' )
+
 ####################
 ## Netflix Titles ##
 ####################
@@ -39,9 +40,8 @@ ds_finance <- netflix_url %>%
   html_table() %>%
   transmute(year = Year,
             revenue = `Revenuein mil. USD-$`, 
-            netIncome = `Net incomein mil. USD-$`, 
-            stonks = `Price per Sharein USD-$`) %>%
-  str (revenue,",",".")
+            netIncome = `Net incomein mil. USD-$`) %>%
+  mutate(revenue = str_replace_all(revenue, ",", "."))
 
 
 ds_expansion <- netflix_url %>%
@@ -60,8 +60,6 @@ ds_imdb_rank <- imdb_url %>%
   html_nodes('.imdbRating strong') %>%
   html_text()
 
-
-xmlTree
 ds_imdb <- as_tibble(cbind(ds_imdb_title, ds_imdb_rank))
 
 ##############################

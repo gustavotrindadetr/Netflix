@@ -24,9 +24,9 @@ write.csv2(ds_netflix_titles, "ds_netflix_titles.csv", sep = ';')
 
 
 ## Getting Oscars' Table
-oscars_url <- html("https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films")
-netflix_url <- html("https://en.wikipedia.org/wiki/Netflix#Film_and_television_deals")
-originals_url <- html("https://en.wikipedia.org/wiki/List_of_Netflix_original_programming")
+oscars_url <- read_html("https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films")
+netflix_url <- read_html("https://en.wikipedia.org/wiki/Netflix#Film_and_television_deals")
+imdb_url <- read_html("https://www.imdb.com/chart/top?ref_=nv_wl_img_3")
 
 ds_oscars <- oscars_url %>%
   html_node("table") %>%
@@ -45,9 +45,17 @@ ds_vod <- netflix_url %>%
   html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[5]') %>%
   html_table()
 
-ds_originals <- originals_url %>%
-  html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[1]') %>%
-  html_table()
+ds_imdb_title <- imdb_url %>%
+  html_nodes('.titleColumn a') %>%
+  html_text()
+
+ds_imdb_rank <- imdb_url %>%
+  html_nodes('.imdbRating strong') %>%
+  html_text()
+
+
+xmlTree
+ds_imdb <- as_tibble(cbind(ds_imdb_title, ds_imdb_rank))
 
 ##############################
 ## Exporting Results as csv ##

@@ -1,9 +1,11 @@
 library(dplyr)
 library(tidyr)
+library(tibble)
 library(rvest)
 library(stringr)
+library(quantmod)
 
-
+options(scipen = 999)
 ####################
 ## Netflix Titles ##
 ####################
@@ -41,16 +43,21 @@ ds_finance <- netflix_url %>%
   transmute(year = Year,
             revenue = `Revenuein mil. USD-$`, 
             netIncome = `Net incomein mil. USD-$`) %>%
-  mutate(revenue = str_replace_all(revenue, ",", "."))
+  mutate(revenue = str_replace_all(revenue, ",", ""), netIncome = str_replace_all(netIncome, ",", "")) %>%
+  mutate(revenue = as.numeric(revenue) * 1000000, netIncome = as.numeric(netIncome) * 1000000)
 
 
 ds_expansion <- netflix_url %>%
   html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[4]') %>%
-  html_table(fill = T)
+  html_table() %>%
+  transmute('Year' = X1, 'info' = X2)
 
 ds_vod <- netflix_url %>%
   html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[5]') %>%
-  html_table()
+  html_table() %>%
+  transmute(year = substr(`End of year`,4,7), 
+            vodCustomers = `paying VOD customers (in millions)`,
+            dvdCustomers = `paying DVD customers (in millions)`)
 
 ds_imdb_title <- imdb_url %>%
   html_nodes('.titleColumn a') %>%
@@ -61,6 +68,21 @@ ds_imdb_rank <- imdb_url %>%
   html_text()
 
 ds_imdb <- as_tibble(cbind(ds_imdb_title, ds_imdb_rank))
+
+
+
+####################
+## Getting Stonks ##
+####################
+
+ds_stonks <- getSymbols('NFLX', src = "yahoo")
+
+ds_stocks <- as.data.frame(NFLX) %>%
+  rownames_to_column(var = "date") %>%
+  select(date, NFLX.Close, NFLX.Volume) %>%
+  rename(stockPrice = NFLX.Close, stockVolume = NFLX.Volume)
+
+
 
 ##############################
 ## Exporting Results as csv ##
@@ -73,3 +95,4 @@ write.csv2(ds_netflix, "ds_netflix.csv", sep = ';', row.names = F)
 write.csv2(ds_finance, "ds_finance.csv", sep = ';', row.names = F)
 write.csv2(ds_expansion, "ds_expansion.csv", sep = ';', row.names = F)
 write.csv2(ds_vod, "ds_vod.csv", sep = ';', row.names = F)
+write.csv2(ds_stocks, "ds_stocks.csv", sep = ';', row.names = F)

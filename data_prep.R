@@ -6,6 +6,8 @@ library(stringr)
 library(quantmod)
 
 options(scipen = 999)
+
+
 ####################
 ## Netflix Titles ##
 ####################
@@ -22,10 +24,11 @@ ds_netflix_titles <- df1 %>%
 write.csv2(ds_netflix_titles, "ds_netflix_titles.csv", sep = ';')
 
 
+
+
 ##############################
 ## Getting wikipedia Tables ##
 ##############################
-
 
 ## Getting Oscars' Table
 oscars_url <- read_html("https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films")
@@ -87,7 +90,6 @@ ds_stocks <- as.data.frame(NFLX) %>%
 ##############################
 ## Exporting Results as csv ##
 ##############################
-
 
 ## Joining Netflix Movies with Oscars]
 ds_netflix <- left_join(ds_netflix_titles, ds_oscars, by = "title")

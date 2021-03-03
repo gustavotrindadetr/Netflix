@@ -2,6 +2,7 @@ library(dplyr)
 library(tidyr)
 library(rvest)
 
+options(OutDec = '.' )
 ####################
 ## Netflix Titles ##
 ####################
@@ -35,7 +36,13 @@ ds_oscars <- oscars_url %>%
 
 ds_finance <- netflix_url %>%
   html_node("table.wikitable.float-left") %>%
-  html_table()
+  html_table() %>%
+  transmute(year = Year,
+            revenue = `Revenuein mil. USD-$`, 
+            netIncome = `Net incomein mil. USD-$`, 
+            stonks = `Price per Sharein USD-$`) %>%
+  str (revenue,",",".")
+
 
 ds_expansion <- netflix_url %>%
   html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[4]') %>%
@@ -64,7 +71,7 @@ ds_imdb <- as_tibble(cbind(ds_imdb_title, ds_imdb_rank))
 
 ## Joining Netflix Movies with Oscars]
 ds_netflix <- left_join(ds_netflix_titles, ds_oscars, by = "title")
-write.csv2(ds_netflix, "ds_netflix.csv", sep = ';')
-write.csv2(ds_finance, "ds_finance.csv", sep = ';')
-write.csv2(ds_expansion, "ds_expansion.csv", sep = ';')
-write.csv2(ds_vod, "ds_vod.csv", sep = ';')
+write.csv2(ds_netflix, "ds_netflix.csv", sep = ';', row.names = F)
+write.csv2(ds_finance, "ds_finance.csv", sep = ';', row.names = F)
+write.csv2(ds_expansion, "ds_expansion.csv", sep = ';', row.names = F)
+write.csv2(ds_vod, "ds_vod.csv", sep = ';', row.names = F)

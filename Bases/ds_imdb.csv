@@ -1,0 +1,251 @@
+;title;rating
+1;The Shawshank Redemption;9,2
+2;The Godfather;9,1
+3;The Godfather: Part II;9
+4;The Dark Knight;9
+5;12 Angry Men;8,9
+6;Schindler's List;8,9
+7;The Lord of the Rings: The Return of the King;8,9
+8;Pulp Fiction;8,8
+9;The Good, the Bad and the Ugly;8,8
+10;The Lord of the Rings: The Fellowship of the Ring;8,8
+11;Fight Club;8,8
+12;Forrest Gump;8,8
+13;Inception;8,7
+14;The Lord of the Rings: The Two Towers;8,7
+15;Star Wars: Episode V - The Empire Strikes Back;8,7
+16;The Matrix;8,6
+17;Goodfellas;8,6
+18;One Flew Over the Cuckoo's Nest;8,6
+19;Seven Samurai;8,6
+20;Se7en;8,6
+21;Life Is Beautiful;8,6
+22;City of God;8,6
+23;The Silence of the Lambs;8,6
+24;It's a Wonderful Life;8,6
+25;Star Wars: Episode IV - A New Hope;8,6
+26;Saving Private Ryan;8,6
+27;The Green Mile;8,5
+28;Spirited Away;8,5
+29;Interstellar;8,5
+30;Parasite;8,5
+31;Léon: The Professional;8,5
+32;Hara-Kiri;8,5
+33;The Usual Suspects;8,5
+34;The Lion King;8,5
+35;The Pianist;8,5
+36;Terminator 2: Judgment Day;8,5
+37;Back to the Future;8,5
+38;American History X;8,5
+39;Modern Times;8,5
+40;Gladiator;8,5
+41;Psycho;8,5
+42;The Departed;8,5
+43;City Lights;8,5
+44;The Intouchables;8,5
+45;Whiplash;8,5
+46;Grave of the Fireflies;8,5
+47;The Prestige;8,5
+48;Once Upon a Time in the West;8,4
+49;Casablanca;8,4
+50;Cinema Paradiso;8,4
+51;Rear Window;8,4
+52;Alien;8,4
+53;Apocalypse Now;8,4
+54;Memento;8,4
+55;The Great Dictator;8,4
+56;Indiana Jones and the Raiders of the Lost Ark;8,4
+57;Django Unchained;8,4
+58;The Lives of Others;8,4
+59;Hamilton;8,4
+60;Paths of Glory;8,4
+61;Joker;8,4
+62;WALL·E;8,4
+63;The Shining;8,4
+64;Avengers: Infinity War;8,4
+65;Sunset Blvd.;8,4
+66;Witness for the Prosecution;8,4
+67;Oldboy;8,3
+68;Spider-Man: Into the Spider-Verse;8,3
+69;Princess Mononoke;8,3
+70;Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb;8,3
+71;The Dark Knight Rises;8,3
+72;Once Upon a Time in America;8,3
+73;Your Name.;8,3
+74;Aliens;8,3
+75;Coco;8,3
+76;Zack Snyder's Justice League;8,3
+77;Avengers: Endgame;8,3
+78;Capernaum;8,3
+79;American Beauty;8,3
+80;Braveheart;8,3
+81;High and Low;8,3
+82;Das Boot;8,3
+83;Toy Story;8,3
+84;3 Idiots;8,3
+85;Amadeus;8,3
+86;Inglourious Basterds;8,3
+87;Good Will Hunting;8,3
+88;Star Wars: Episode VI - Return of the Jedi;8,3
+89;Como Estrelas na Terra;8,3
+90;Reservoir Dogs;8,3
+91;2001: A Space Odyssey;8,3
+92;Requiem for a Dream;8,3
+93;The Hunt;8,3
+94;Vertigo;8,3
+95;M;8,3
+96;Eternal Sunshine of the Spotless Mind;8,3
+97;Citizen Kane;8,3
+98;Dangal;8,3
+99;The Kid;8,2
+100;Singin' in the Rain;8,2
+101;Bicycle Thieves;8,2
+102;Full Metal Jacket;8,2
+103;Come and See;8,2
+104;Snatch;8,2
+105;Ikiru;8,2
+106;North by Northwest;8,2
+107;A Clockwork Orange;8,2
+108;Scarface;8,2
+109;1917;8,2
+110;Taxi Driver;8,2
+111;Incendies;8,2
+112;A Separation;8,2
+113;Toy Story 3;8,2
+114;Lawrence of Arabia;8,2
+115;The Sting;8,2
+116;Amélie;8,2
+117;Metropolis;8,2
+118;The Apartment;8,2
+119;For a Few Dollars More;8,2
+120;Double Indemnity;8,2
+121;To Kill a Mockingbird;8,2
+122;Up;8,2
+123;Indiana Jones and the Last Crusade;8,2
+124;Heat;8,2
+125;L.A. Confidential;8,2
+126;Green Book;8,2
+127;Die Hard;8,2
+128;Batman Begins;8,2
+129;Monty Python and the Holy Grail;8,2
+130;Yojimbo;8,2
+131;Rashomon;8,2
+132;Downfall;8,2
+133;Children of Heaven;8,2
+134;Unforgiven;8,2
+135;Ran;8,2
+136;Some Like It Hot;8,2
+137;Howl's Moving Castle;8,2
+138;All About Eve;8,2
+139;Casino;8,2
+140;A Beautiful Mind;8,2
+141;The Wolf of Wall Street;8,2
+142;The Great Escape;8,2
+143;Pan's Labyrinth;8,2
+144;There Will Be Blood;8,1
+145;The Secret in Their Eyes;8,1
+146;Lock, Stock and Two Smoking Barrels;8,1
+147;Judgment at Nuremberg;8,1
+148;Raging Bull;8,1
+149;My Neighbor Totoro;8,1
+150;The Treasure of the Sierra Madre;8,1
+151;Dial M for Murder;8,1
+152;Three Billboards Outside Ebbing, Missouri;8,1
+153;Shutter Island;8,1
+154;Chinatown;8,1
+155;The Gold Rush;8,1
+156;My Father and My Son;8,1
+157;No Country for Old Men;8,1
+158;V for Vendetta;8,1
+159;Inside Out;8,1
+160;The Thing;8,1
+161;The Elephant Man;8,1
+162;The Seventh Seal;8,1
+163;Warrior;8,1
+164;The Sixth Sense;8,1
+165;Klaus;8,1
+166;Jurassic Park;8,1
+167;Trainspotting;8,1
+168;The Truman Show;8,1
+169;Gone with the Wind;8,1
+170;Finding Nemo;8,1
+171;Stalker;8,1
+172;Wild Strawberries;8,1
+173;Memories of Murder;8,1
+174;Kill Bill: Vol. 1;8,1
+175;Blade Runner;8,1
+176;The Bridge on the River Kwai;8,1
+177;Fargo;8,1
+178;Room;8,1
+179;Wild Tales;8,1
+180;Tokyo Story;8,1
+181;Gran Torino;8,1
+182;The Third Man;8,1
+183;On the Waterfront;8,1
+184;The Deer Hunter;8,1
+185;In the Name of the Father;8,1
+186;Mary and Max;8,1
+187;The Grand Budapest Hotel;8,1
+188;Before Sunrise;8,1
+189;Catch Me If You Can;8,1
+190;Gone Girl;8,1
+191;Hacksaw Ridge;8,1
+192;Prisoners;8,1
+193;Persona;8,1
+194;Andhadhun;8,1
+195;Sherlock Jr.;8,1
+196;The Big Lebowski;8,1
+197;To Be or Not to Be;8,1
+198;Barry Lyndon;8,1
+199;The General;8,1
+200;How to Train Your Dragon;8,1
+201;Ford v Ferrari;8,1
+202;Autumn Sonata;8,1
+203;12 Years a Slave;8,1
+204;The Bandit;8,1
+205;Anand;8,1
+206;Mr. Smith Goes to Washington;8,1
+207;Mad Max: Fury Road;8,1
+208;Dead Poets Society;8,1
+209;Million Dollar Baby;8,1
+210;Raatchasan;8,1
+211;Stand by Me;8,1
+212;Harry Potter and the Deathly Hallows: Part 2;8,1
+213;Network;8,1
+214;Ben-Hur;8,1
+215;Hachi: A Dog's Tale;8,1
+216;The Handmaiden;8,1
+217;Cool Hand Luke;8,1
+218;Logan;8,1
+219;Platoon;8
+220;Into the Wild;8
+221;Rush;8
+222;The Wages of Fear;8
+223;La Haine;8
+224;Monty Python's Life of Brian;8
+225;The 400 Blows;8
+226;The Passion of Joan of Arc;8
+227;Soul;8
+228;Spotlight;8
+229;Hotel Rwanda;8
+230;Gangs of Wasseypur;8
+231;Amores Perros;8
+232;Andrei Rublev;8
+233;Monsters, Inc.;8
+234;Rocky;8
+235;Nausicaä of the Valley of the Wind;8
+236;Rebecca;8
+237;Time of the Gypsies;8
+238;Before Sunset;8
+239;In the Mood for Love;8
+240;Pinte de Açafrão;8
+241;Rififi;8
+242;Paris, Texas;8
+243;Drishyam;8
+244;Portrait of a Lady on Fire;8
+245;It Happened One Night;8
+246;Neon Genesis Evangelion: The End of Evangelion;8
+247;A Silent Voice: The Movie;8
+248;Drishyam;8
+249;7 Kogustaki Mucize;8
+250;Hera Pheri;8

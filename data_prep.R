@@ -1,100 +1,96 @@
+################
+##  PACKAGES  ##
+################
+
 library(dplyr)
 library(tidyr)
-library(tibble)
 library(rvest)
-library(stringr)
 library(quantmod)
-
-options(scipen = 999)
+library(httr)
+library(tibble)
 
 
 ####################
-## Netflix Titles ##
+## Kaggle Dataset ##
 ####################
 
-### Read CSV
-df1 <- read.csv2("netflix_titles.csv", sep = ',', header = TRUE, encoding = "UTF-8")
+## Read CSV ##
+df1 <- read.csv("netflix_titles.csv", header = T, sep = ',', encoding = "UTF-8")
 
-### Fix Duration Column and Cast
+## Fix Duration and Cast columns ##
 ds_netflix_titles <- df1 %>%
-  separate(duration, into = c('duration_num', 'duration_type'), sep = " ") %>%
-  separate_rows(cast, sep = ', ')
+  separate(duration, into = c("duration_num","duration_type"), sep =  " ") %>%
+  separate_rows(cast, sep = ", ")
 
-### Export File
+## Export file ##
 write.csv2(ds_netflix_titles, "ds_netflix_titles.csv", sep = ';')
 
 
 
+##########################
+## Wikipedia html Table ##
+##########################
 
-##############################
-## Getting wikipedia Tables ##
-##############################
+## URL Wikipedia ##
+oscars_url <- "https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films"
 
-## Getting Oscars' Table
-oscars_url <- read_html("https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films")
-netflix_url <- read_html("https://en.wikipedia.org/wiki/Netflix#Film_and_television_deals")
-imdb_url <- read_html("https://www.imdb.com/chart/top?ref_=nv_wl_img_3")
+## Getting Oscars' table ##
 
-ds_oscars <- oscars_url %>%
-  html_node("table") %>%
+## Using Class ##
+#ds_oscars <- read_html(oscars_url) %>%
+#  html_node("table") %>%
+#  html_table()
+
+## Using X-Path ##
+ds_oscars <- read_html(oscars_url) %>%
+  html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table') %>%
   html_table() %>%
-  rename(title = Film)
-
-ds_finance <- netflix_url %>%
-  html_node("table.wikitable.float-left") %>%
-  html_table() %>%
-  transmute(year = Year,
-            revenue = `Revenuein mil. USD-$`, 
-            netIncome = `Net incomein mil. USD-$`) %>%
-  mutate(revenue = str_replace_all(revenue, ",", ""), netIncome = str_replace_all(netIncome, ",", "")) %>%
-  mutate(revenue = as.numeric(revenue) * 1000000, netIncome = as.numeric(netIncome) * 1000000)
+  select(title = Film, Awards)
 
 
-ds_expansion <- netflix_url %>%
-  html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[4]') %>%
-  html_table() %>%
-  transmute('Year' = X1, 'info' = X2)
+## Export file ##
+write.csv2(ds_oscars, "ds_oscars.csv", sep = ";")
 
-ds_vod <- netflix_url %>%
-  html_node(xpath = '//*[@id="mw-content-text"]/div[1]/table[5]') %>%
-  html_table() %>%
-  transmute(year = substr(`End of year`,4,7), 
-            vodCustomers = `paying VOD customers (in millions)`,
-            dvdCustomers = `paying DVD customers (in millions)`)
 
+
+#################
+## IMDB Rating ##
+#################
+
+## URL IMDB ##
+imdb_url <- "https://www.imdb.com/chart/top/?ref_=nv_mv_250" 
+
+## Getting the title names in english ##
 ds_imdb_title <- imdb_url %>%
-  html_nodes('.titleColumn a') %>%
+  html_session(add_headers("Accept-Language" = "en")) %>%
+  read_html() %>%
+  html_nodes(".titleColumn a") %>%
   html_text()
-
-ds_imdb_rank <- imdb_url %>%
-  html_nodes('.imdbRating strong') %>%
+  
+## Getting the Imbd rating ##
+ds_imdb_rating <- read_html(imdb_url) %>%
+  html_nodes(".imdbRating strong") %>%
   html_text()
+  
+## Creating imbd table ##
+ds_imdb <- as.tibble(cbind(title = ds_imdb_title, rating = ds_imdb_rating))
 
-ds_imdb <- as_tibble(cbind(ds_imdb_title, ds_imdb_rank))
 
+## Export file ##
+write.csv2(ds_imdb, "ds_imdb.csv", sep = ";")
+  
 
+####################################
+## Yahoo Finance - Netflix Stocks ##
+####################################
 
-####################
-## Getting Stonks ##
-####################
+## Getting the stock history ##
+getSymbols("NFLX", src = "yahoo")
 
-ds_stonks <- getSymbols('NFLX', src = "yahoo")
-
-ds_stocks <- as.data.frame(NFLX) %>%
+## Fix rownames and selecting Close and Volume columns ##
+ds_stonks <- as.data.frame(NFLX) %>%
   rownames_to_column(var = "date") %>%
-  select(date, NFLX.Close, NFLX.Volume) %>%
-  rename(stockPrice = NFLX.Close, stockVolume = NFLX.Volume)
+  select(date, price = NFLX.Close, volume = NFLX.Volume)
 
-
-
-##############################
-## Exporting Results as csv ##
-##############################
-
-## Joining Netflix Movies with Oscars]
-ds_netflix <- left_join(ds_netflix_titles, ds_oscars, by = "title")
-write.csv2(ds_netflix, "ds_netflix.csv", sep = ';', row.names = F)
-write.csv2(ds_finance, "ds_finance.csv", sep = ';', row.names = F)
-write.csv2(ds_expansion, "ds_expansion.csv", sep = ';', row.names = F)
-write.csv2(ds_vod, "ds_vod.csv", sep = ';', row.names = F)
-write.csv2(ds_stocks, "ds_stocks.csv", sep = ';', row.names = F)
+## Export File ##
+write.csv2(ds_stonks, "ds_stonks.csv", sep = ";")
